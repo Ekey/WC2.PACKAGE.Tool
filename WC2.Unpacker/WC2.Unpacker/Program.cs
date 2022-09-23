@@ -33,6 +33,12 @@ namespace WC2.Unpacker
             String m_PackageFile = args[0];
             String m_Output = Utils.iCheckArgumentsPath(args[1]);
 
+            if (!File.Exists("Zstandard.Net.dll") || !File.Exists("libzstd.dll"))
+            {
+                Utils.iSetError("[ERROR]: Unable to find ZSTD modules");
+                return;
+            }
+
             if (!File.Exists(m_PackageFile))
             {
                 Utils.iSetError("[ERROR]: Input PACKAGE file -> " + m_PackageFile + " <- does not exist");
